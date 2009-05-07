@@ -35,6 +35,10 @@ class MPC:
 def parse(obs):
 	""" This method examines a string, and if it can parse an observation
 	out of it, it returns a MPC object. Otherwise you get None."""
+	if not obs:
+		return None
+	if len(obs) < 80:
+		return None
 	mpc = MPC()
 	mpc.observatory = obs[77:80]
 	mpc.magnitude = obs[66:71]
