@@ -32,7 +32,7 @@ class MPC:
 		Constructor
 		'''
 	
-def parse(obs):
+def parseMPC(obs):
 	""" This method examines a string, and if it can parse an observation
 	out of it, it returns a MPC object. Otherwise you get None."""
 	if not obs:

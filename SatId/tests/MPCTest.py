@@ -30,27 +30,27 @@ class Test(unittest.TestCase):
 
 	def testParse(self):
 		""" Test to make sure we can parse the standard ref obs """
-		mpc = MPC.parse(obsdata[0])
+		mpc = MPC.parseMPC(obsdata[0])
 		self.assertFalse(None == mpc)
 		self.assertEquals(mpc.observatory, "413")
 		for o in obsdata:
-			mpc = MPC.parse(o)
+			mpc = MPC.parseMPC(o)
 			self.assertFalse(None == mpc)
 			self.assertEquals(o[-3:], mpc.observatory)
 		print "obs->",mpc.observatory
 		
 	def testParseBlank(self):
 		""" Blank """
-		mpc = MPC.parse("")
+		mpc = MPC.parseMPC("")
 		self.assertTrue(None == mpc)
-		mpc = MPC.parse("          		  		  		  		  		  		  		  ")
+		mpc = MPC.parseMPC("          		  		  		  		  		  		  		  ")
 		self.assertTrue(None == mpc)
-		mpc = MPC.parse(None)
+		mpc = MPC.parseMPC(None)
 		self.assertTrue(None == mpc)
 
 	def testParseJunk(self):
 		""" Junk """
-		mpc = MPC.parse("Junk blah blah")
+		mpc = MPC.parseMPC("Junk blah blah")
 		self.assertTrue(None == mpc)
 			  		  
 
