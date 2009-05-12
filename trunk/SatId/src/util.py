@@ -42,3 +42,12 @@ void DLL_FUNC epoch_of_date_to_j2000( const double jd, double *ra, double *dec)
 
 '''
 
+import math
+
+#
+# Constants
+PI = math.pi
+radians_per_degree = (2*PI)/360
+c = 299792458
+
+
