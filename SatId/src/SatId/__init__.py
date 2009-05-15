@@ -6,9 +6,12 @@
 
 import math 
 
+__version__ = '1.0'
+
 #
 # Constants
 PI = math.pi
+twopi = 2*PI
 radians_per_degree = (2*PI)/360
 c = 299792458
 
@@ -28,6 +31,7 @@ ae = 1.0 #AE distance units/Earth radii 1.0
 
 #PIO2 pi/2 1.57079633
 
-#TWOPI 2pi 6.2831853
-
 #X3PIO2 3pi/2 4.71238898
+
+def hello():
+	print "Hello"

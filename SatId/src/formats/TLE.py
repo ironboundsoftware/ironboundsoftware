@@ -4,7 +4,7 @@ Created on May 12, 2009
 @author: nick.loadholtes
 '''
 import re
-from SatId import *
+import SatId
 
 class TLE(object):
 	'''
@@ -13,6 +13,10 @@ class TLE(object):
 	
 	Note: The checksums are not currently checked/computed.
 	'''
+	print dir(SatId)
+	#temp vars
+	xmnpda = SatId.xmnpda
+	temp = SatId.twopi/xmnpda/xmnpda
 	#line 0
 	name = ""
 	#common to line 1 & 2
@@ -68,13 +72,19 @@ def parseTLE(buffer):
 		x += 1
 		line = lines[x]
 		tle.objectId = line[2:7]
-		tle.inclination = float(line[8:16])
-		tle.ra = float(line[17:25])
-		tle.eccentricity = float("0."+line[26:33])
-		tle.perigee = float(line[34:42])
-		tle.anomaly = float(line[43:51])
+		tle.inclination = float(line[8:16]) * radians_to_degree
+		tle.ra = float(line[17:25]) * radians_per_degree
+		tle.eccentricity = float("0."+line[26:33]) 
+		tle.perigee = float(line[34:42]) * radians_per_degree
+		tle.anomaly = float(line[43:51]) * radians_per_degree
 		tle.meanMotion = float(line[52:63])
 		tle.revolutions = int(line[63:68])	
+		
+		#Fixup
+		tle.meanMotion *= temp * xmnpda
+		tle.firstDeriv *= temp
+		tle.secondDeriv *= temp/xmnpda
+		 
 	return tle
 	
 	

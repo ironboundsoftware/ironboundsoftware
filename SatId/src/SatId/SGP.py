@@ -34,7 +34,7 @@ def SGP4(tle, tsince):
 #* RECOVER ORIGINAL MEAN MOTION (XNODP) AND SEMIMAJOR AXIS (AODP)
 #* FROM INPUT ELEMENTS
 #A1=(XKE/XNO)**TOTHRD
-	a1 = (xke / xno)**twothird #What is xno?
+	a1 = (xke / tle.meanMotion)**twothird #What is xno?
 	
 #COSIO=COS(XINCL)
 #THETA2=COSIO*COSIO
@@ -46,6 +46,10 @@ def SGP4(tle, tsince):
 #EOSQ=EO*EO
 #BETAO2=1.-EOSQ
 #BETAO=SQRT(BETAO2)
+	eosquared = tle.eccentricity * tle.eccentricity
+	beta_o2 = 1.0 - eosquared
+	beta_o = math.sqrt(beta_o2)
+	
 #DEL1=1.5*CK2*X3THM1/(A1*A1*BETAO*BETAO2)
 #AO=A1*(1.-DEL1*(.5*TOTHRD+DEL1*(1.+134./81.*DEL1)))
 #DELO=1.5*CK2*X3THM1/(AO*AO*BETAO*BETAO2)
