@@ -4,6 +4,8 @@ Created on May 14, 2009
 @author: nick.loadholtes
 '''
 import formats.TLE as TLE
+from SatId import *
+import math
 
 def SGP4(tle, tsince):
 	"""
@@ -32,11 +34,15 @@ def SGP4(tle, tsince):
 #* RECOVER ORIGINAL MEAN MOTION (XNODP) AND SEMIMAJOR AXIS (AODP)
 #* FROM INPUT ELEMENTS
 #A1=(XKE/XNO)**TOTHRD
-	a1 = (xke / xno)**twothird
+	a1 = (xke / xno)**twothird #What is xno?
 	
 #COSIO=COS(XINCL)
 #THETA2=COSIO*COSIO
 #X3THM1=3.*THETA2-1.
+	cosio = math.cos(tle.inclination)
+	theta2 = cosio*cosio
+	x3thm1 = 3 *(theta2 - 1)
+	
 #EOSQ=EO*EO
 #BETAO2=1.-EOSQ
 #BETAO=SQRT(BETAO2)
