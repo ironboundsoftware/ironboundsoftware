@@ -4,6 +4,7 @@ Created on May 12, 2009
 @author: nick.loadholtes
 '''
 import re
+from SatId import *
 
 class TLE(object):
 	'''
@@ -58,8 +59,8 @@ def parseTLE(buffer):
 		tle.intDesgination = line[9:17]
 		tle.elementSetEpoch = float(line[18:32])
 		tle.firstDeriv = float(line[33:43])
-		tle.secondDeriv = line[44:52]
-		tle.bStarDrag = line[53:61]
+		tle.secondDeriv = (float(line[44:50])/100000.0) * (10.0**int(line[50:52]))
+		tle.bStarDrag = (float(line[53:59])/100000.0) * (10.0**int(line[59:61]))
 		tle.elementSetType = line[62]
 		tle.elementNumber = int(line[64:68])
 		
