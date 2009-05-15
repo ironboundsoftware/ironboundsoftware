@@ -9,10 +9,15 @@ from SatId import SGP
 class Test(unittest.TestCase):
 
 
-	def testSample(self):
+	def t3estSample(self):
 		s = SGP.SGP4(None,3)
 		self.assertNotEqual((None, None, None), s)
 
+	def testWTF(self):
+		import SatId
+		print "Looking at SatId"
+		print dir(SatId)
+		
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testSample']
 	unittest.main()
