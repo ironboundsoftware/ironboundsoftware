@@ -4,7 +4,7 @@ Created on May 12, 2009
 @author: nick.loadholtes
 '''
 import unittest
-from formats import TLE
+from formats import *
 
 buffer = "ISS (ZARYA)\n\
 1 25544U 98067A   04236.56031392  .00020137  00000-0  16538-3 0  5135\n\
@@ -20,7 +20,7 @@ class Test(unittest.TestCase):
 		self.assertEqual("25544", tle.objectId)
 		self.assertEqual("98067A  ", tle.intDesgination)
 		self.assertEqual(04236.56031392, tle.elementSetEpoch)
-		self.assertEqual(.00020137, tle.firstDeriv)
+		self.assertEqual(0.00020137, tle.firstDeriv)
 		self.assertEqual(0.0, tle.secondDeriv)
 		self.assertEqual(0.00016538, tle.bStarDrag)
 		self.assertEqual("0", tle.elementSetType)
