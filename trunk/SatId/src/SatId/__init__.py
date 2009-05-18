@@ -26,7 +26,7 @@ twothird = 2/3.0 #TOTHRD 2/3 .66666667
 xj3 = -0.253881e-5
 xke = 0.743669161e-1
 xkmper = 6378.135 #XKMPER kilometers/Earth radii 6378.135
-xmnpda = 1440.0 #XMNPDA time units/day 1440.0
+minutes_per_day = 1440.0 #XMNPDA time units/day 1440.0
 ae = 1.0 #AE distance units/Earth radii 1.0
 
 #PIO2 pi/2 1.57079633
