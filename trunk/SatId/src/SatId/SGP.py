@@ -4,7 +4,8 @@ Created on May 14, 2009
 @author: nick.loadholtes
 '''
 import formats.TLE as TLE
-from SatId import *
+import SatId
+#from SatId import *
 import math
 
 def SGP4(tle, tsince):
@@ -55,6 +56,11 @@ def SGP4(tle, tsince):
 #DELO=1.5*CK2*X3THM1/(AO*AO*BETAO*BETAO2)
 #XNODP=XNO/(1.+DELO)
 #AODP=AO/(1.-DELO)
+	del1 = 1.5*tle.ck2*tle.x3thm/(a1*a1*beta_o*beta_o2)
+	ao = a1*(1.0 -del1 *(0.5*SatId.tothirds + del1(1.0 + 134.0/81.0 * del1)))
+	delo = 1.5 * tle.ck2 * x3thm1/(ao*ao * beta_o * beta_o2)
+	xnodp = tle.meanMotion/(1.0 + delo)
+	aodp = ao/(1.0-delo)
 
 
 #* INITIALIZATION
@@ -66,19 +72,42 @@ def SGP4(tle, tsince):
 
 #ISIMP=0
 #IF((AODP*(1.-EO)/AE) .LT. (220./XKMPER+AE)) ISIMP=1
-
+	isimp = 0
+	if aodp*(1.0-tle.eccentricity)/SatId.ae < (220.0/SatId.xkmper + SatId.ae):
+		isimp = 1
 
 #* FOR PERIGEE BELOW 156 KM, THE VALUES OF
 #* S AND QOMS2T ARE ALTERED
+
 #S4=S
 #QOMS24=QOMS2T
 #PERIGE=(AODP*(1.-EO)-AE)*XKMPER
+	s4 = SatId.S
+	qoms24 = qoms2t
+	perige = (aodp*(1.0-tle.eccentricity)-SatId.ae) * SatId.xkmper
+
 #IF(PERIGE .GE. 156.) GO TO 10
+	if perige > 156.0:
+		print "goto 10"
+	
 #S4=PERIGE-78.
+	s4 = perige-78
+
+#
+# NOTE: Need to double check this section
+#	
 #IF(PERIGE .GT. 98.) GO TO 9
-#S4=20.
+	if perige > 98.0:
+		print "goto 9"
 #9 QOMS24=((120.-S4)*AE/XKMPER)**4
+		qosm24 = ((120.0 - s4) * SatId.xkmper) ** 4
+	else:
+#S4=20.
+		s4 = 20.0
+
 #S4=S4/XKMPER+AE
+	s4 = s4/SatId.xkmper+SatId.ae
+	
 #16
 #10 PINVSQ=1./(AODP*AODP*BETAO2*BETAO2)
 #TSI=1./(AODP-S4)
