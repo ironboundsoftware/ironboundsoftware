@@ -4,7 +4,9 @@ Created on May 12, 2009
 @author: nick.loadholtes
 '''
 import unittest
-from formats import *
+#import SatId
+from formats import TLE
+
 
 buffer = "ISS (ZARYA)\n\
 1 25544U 98067A   04236.56031392  .00020137  00000-0  16538-3 0  5135\n\

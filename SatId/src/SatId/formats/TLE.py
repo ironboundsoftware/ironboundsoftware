@@ -4,18 +4,19 @@ Created on May 12, 2009
 @author: nick.loadholtes
 '''
 import re
+#from ..import SatId 
 import SatId
 
-class TLE(object):
+class TLE:
 	'''
 	This class holds the data associated with a Two Line Element (TLE) description
 	of a satellite orbit.
 	
 	Note: The checksums are not currently checked/computed.
 	'''
-	print dir(SatId)
+#	print dir(SatId)
 	#temp vars
-	xmnpda = SatId.xmnpda
+	xmnpda = SatId.minutes_per_day
 	temp = SatId.twopi/xmnpda/xmnpda
 	#line 0
 	name = ""
