@@ -27,17 +27,17 @@ class TLE:
 	#line 1
 	elementSetEpoch = 0.0
 	firstDeriv = 0.0
-	secondDeriv = ""
-	bStarDrag = ""
+	secondDeriv = 0.0
+	bStarDrag = 0.0
 	elementSetType = 0
 	elementNumber = 0
 	#line 2
 	inclination = 0.0 #Declination?
 	ra = 0.0
-	eccentricity = 0
+	eccentricity = 0.000001 #Can't have eccentricity of 0?
 	perigee = 0.0
 	anomaly = 0.0
-	meanMotion = 0.0 # rev per day
+	meanMotion = 1.0 # rev per day, default to 1 to prevent divide-by-zero
 	revolutions = 0 # At Epoch
 	
 
