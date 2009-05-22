@@ -35,7 +35,7 @@ def SGP4(tle, tsince):
 #* RECOVER ORIGINAL MEAN MOTION (XNODP) AND SEMIMAJOR AXIS (AODP)
 #* FROM INPUT ELEMENTS
 #A1=(XKE/XNO)**TOTHRD
-	a1 = (xke / tle.meanMotion)**twothird #What is xno?
+	a1 = (SatId.xke / tle.meanMotion)**twothird #What is xno?
 	
 #COSIO=COS(XINCL)
 #THETA2=COSIO*COSIO
