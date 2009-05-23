@@ -8,6 +8,7 @@ import SatId
 from SatId import SGP
 from SatId.formats import TLE
 from math import pi
+import math
 
 #
 # Sample input and results from reference implementation.
@@ -57,6 +58,7 @@ class TestFunkyRadianNormalizer(unittest.TestCase):
 		
 	def testNormal(self):
 		self.assertEqual(0, self.f(0))
+		self.assertEqual(1, self.f(1))
 	
 	def test3Pi(self):
 		self.assertEqual(pi, self.f(3*pi))
@@ -65,8 +67,15 @@ class TestFunkyRadianNormalizer(unittest.TestCase):
 		self.assertEqual(pi, self.f(pi))
 		
 	def test2Pi(self):
-		self.assertEqual(0, self.f(2*pi))
+		self.assertEqual(2*pi, self.f(2*pi))
 
+	def test4Pi(self):
+		self.assertEqual(0, self.f(4*pi))
+		
+	def test5pi(self):
+		self.assertEqual(pi, self.f(5*pi))
+		self.assertAlmostEqual(math.sin(pi), math.sin(5*pi))
+						
 	
 	
 	
