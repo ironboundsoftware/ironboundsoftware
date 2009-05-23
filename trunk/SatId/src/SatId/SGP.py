@@ -317,7 +317,7 @@ def SGP4(tle, tsince):
 #* SOLVE KEPLERS EQUATION
 #
 
-	capu = 
+#	capu = 
 
 #CAPU=FMOD2P(XLT-XNODE)
 #TEMP2=CAPU
@@ -396,23 +396,12 @@ def SGP4(tle, tsince):
 	z = 0
 	return (x, y, z)		
 
-
-
 def fmod2p(x):
 	""" This is a function to take in an angle in radians and return
 	the angle in the range of 0 to 2*pi """
-	output = x
-	i = x / SatId.twopi
-	output = output - i * SatId.twopi
-	if output < 0:
-		output = output + SatId.twopi
+	if x <= SatId.twopi:
+		return x
+	output = x%(SatId.twopi)
+#	if output < 0.09: # If the angle is really small?
+#		output = SatId.twopi - output
 	return output
-
-#FUNCTION FMOD2P(X)
-#COMMON/C2/DE2RA,PI,PIO2,TWOPI,X3PIO2
-#FMOD2P=X
-#I=FMOD2P/TWOPI
-#FMOD2P=FMOD2P-I*TWOPI
-#IF(FMOD2P.LT.0) FMOD2P=FMOD2P+TWOPI
-#RETURN
-#END
