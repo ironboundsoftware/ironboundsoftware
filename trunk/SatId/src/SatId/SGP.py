@@ -317,23 +317,36 @@ def SGP4(tle, tsince):
 #* SOLVE KEPLERS EQUATION
 #
 
-#	capu = 
-
 #CAPU=FMOD2P(XLT-XNODE)
 #TEMP2=CAPU
+	capu = fmod2p(xlt - xnode)
+	temp2 = capu
 #DO 130 I=1,10
-#SINEPW=SIN(TEMP2)
-#COSEPW=COS(TEMP2)
-#TEMP3=AXN*SINEPW
-#TEMP4=AYN*COSEPW
-#TEMP5=AXN*COSEPW
-#TEMP6=AYN*SINEPW
-#EPW=(CAPU-TEMP4+TEMP3-TEMP2)/(1.-TEMP5-TEMP6)+TEMP2
-#IF(ABS(EPW-TEMP2) .LE. E6A) GO TO 140
-#130 TEMP2=EPW
+	for loopcounter in range(1, 11):
+		#SINEPW=SIN(TEMP2)
+		#COSEPW=COS(TEMP2)
+		sinepw = math.sin(temp2)
+		cosepw = math.cos(temp2)
+		#TEMP3=AXN*SINEPW
+		#TEMP4=AYN*COSEPW
+		#TEMP5=AXN*COSEPW
+		#TEMP6=AYN*SINEPW
+		temp3 = axn * sinepw
+		temp4 = ayn * cosepw
+		temp5 = axn * cosepw
+		temp6 = ayn * sinepw
+		#EPW=(CAPU-TEMP4+TEMP3-TEMP2)/(1.-TEMP5-TEMP6)+TEMP2
+		epw = (capu - temp4 + temp3 - temp2) / (1.0 - temp5 - temp6) + temp2
+		#IF(ABS(EPW-TEMP2) .LE. E6A) GO TO 140
+		#130 TEMP2=EPW
+		if abs(epw - temp2) <= SatId.e6a:
+			break
+		temp2 = epw
 
-
+#
 #* SHORT PERIOD PRELIMINARY QUANTITIES
+#
+
 #140 ECOSE=TEMP5+TEMP6
 #ESINE=TEMP3-TEMP4
 #ELSQ=AXN*AXN+AYN*AYN
@@ -343,10 +356,27 @@ def SGP4(tle, tsince):
 #TEMP1=1./R
 #RDOT=XKE*SQRT(A)*ESINE*TEMP1
 #RFDOT=XKE*SQRT(PL)*TEMP1
+	ecose = temp5 + temp6
+	esine = temp3 - temp4
+	elsq = axn * axn + ayn * ayn
+	temp = 1.0 - elsq
+	pl = a * temp
+	r = a * (1.0 - ecose)
+	temp1 = 1.0/r
+	rdot = SatId.xke * math.sqrt(a) * esine * temp1
+	rfdot = SatId.xke * math.sqrt(pl) * temp1
+	
 #TEMP2=A*TEMP1
 #BETAL=SQRT(TEMP)
 #TEMP3=1./(1.+BETAL)
 #COSU=TEMP2*(COSEPW-AXN+AYN*ESINE*TEMP3)
+	temp2 = a * temp1
+	betal = math.sqrt(temp)
+	temp3 = 1.0 / (1.0 + betal)
+	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
+	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
+#	u = 
+	
 #SINU=TEMP2*(SINEPW-AYN-AXN*ESINE*TEMP3)
 #U=ACTAN(SINU,COSU)
 #SIN2U=2.*SINU*COSU
@@ -396,6 +426,38 @@ def SGP4(tle, tsince):
 	z = 0
 	return (x, y, z)		
 
+def actan(s,c):
+	"""From the Space Track pdf: The function subroutine ACTAN is passed the values of sine and cosine in that order and 
+it returns the angle in radians within the range of 0 to 2pi."""
+	ouput = 0
+	if c < 0:
+		temp = s/c
+		output = output + math.atan(temp)
+		return output
+	
+	return output
+
+#FUNCTION ACTAN(SINX,COSX) 
+#COMMON/C2/DE2RA,PI,PIO2,TWOPI,X3PIO2 
+#ACTAN=0. 
+#IF (COSX.EQ.0. ) GO TO 5 
+#IF (COSX.GT.0. ) GO TO 1 
+#ACTAN=PI 
+#GO TO 7 
+#1 IF (SINX.EQ.0. ) GO TO 8 
+#IF (SINX.GT.0. ) GO TO 7 
+#ACTAN=TWOPI 
+#GO TO 7 
+#5 IF (SINX.EQ.0. ) GO TO 8 
+#IF (SINX.GT.0. ) GO TO 6 
+#ACTAN=X3PIO2 
+#GO TO 8 
+#6 ACTAN=PIO2 
+#GO TO 8 
+#7 TEMP=SINX/COSX 
+#ACTAN=ACTAN+ATAN(TEMP) 
+#8 RETURN 
+
 def fmod2p(x):
 	""" This is a function to take in an angle in radians and return
 	the angle in the range of 0 to 2*pi """
@@ -405,3 +467,4 @@ def fmod2p(x):
 #	if output < 0.09: # If the angle is really small?
 #		output = SatId.twopi - output
 	return output
+
