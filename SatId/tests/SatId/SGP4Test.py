@@ -13,12 +13,15 @@ import math
 #
 # Sample input and results from reference implementation.
 #
-#Sample TLE
-#1 88888U 80275.98708465 .00073094 13844-3 66816-4 0 8
-#2 88888 72.8435 115.9689 0086731 52.6988 110.5714 16.05824518 105
+sampletle = "Sample TLE \n\
+1 88888U          80275.98708465  .00073094  13844-3  66816-4 0    8\n\
+2 88888  72.8435 115.9689 0086731  52.6988 110.5714 16.05824518   105"
+
+testtle = TLE.TLE()
+
 #
 #SGP4 results
-#TSINCE 				X 							Y 								Z
+#TSINCE 				X 							Y 									Z
 #0. 						2328.97048951 	-5995.22076416 		1719.97067261
 #360.00000000 	2456.10705566 	-6071.93853760 		1222.89727783
 #720.00000000 	2567.56195068 	-6112.50384522 		713.96397400
@@ -41,13 +44,12 @@ class Test(unittest.TestCase):
 
 	def testSample(self):
 		tle = TLE.TLE() 
-		s = SGP.SGP4(tle,3)
+#		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(testtle,3)
 		self.assertNotEqual((None, None, None), s)
-		self.assertEqual((0, 0, 0), s)
+		self.assertEqual((0.17636278631532942, 0.01301847005709536, 0), s)
 
-	def testWTF(self):
-		import SatId
-		print "Looking at SatId"
+
 
 		
 class TestFunkyRadianNormalizer(unittest.TestCase):

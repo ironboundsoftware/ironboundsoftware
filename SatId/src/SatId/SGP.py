@@ -146,9 +146,9 @@ def SGP4(tle, tsince):
 #A3OVK2=-XJ3/CK2*AE**3
 #C3=COEF*TSI*A3OVK2*XNODP*AE*SINIO/EO
 #X1MTH2=1.-THETA2
-	sin0 = math.sin(tle.inclination)
+	sinio = math.sin(tle.inclination)
 	a3ovk2 = -SatId.xj3/ck2 * SatId.ae**3
-	c3 = coef * tsi * a3ovk2 * xnodp * SatId.ae * sin0/tle.eccentricity
+	c3 = coef * tsi * a3ovk2 * xnodp * SatId.ae * sinio/tle.eccentricity
 	x1mth2 = 1.0 - theta2
 	
 	
@@ -205,8 +205,8 @@ def SGP4(tle, tsince):
 	xmcof = -twothirds * coef * tle.bStarDrag * SatId.ae/eeta
 	xnodcf = 3.5 * beta_o2 * xhdot1 * c1
 	t2cof = 1.5 * c1
-	xlcof = 0.125 * a3ovk2 * sin0 * (3.0 * 5.0 * cosio) / (1.0 + cosio)
-	aycof = 0.25 * a3ovk2 * sin0
+	xlcof = 0.125 * a3ovk2 * sinio * (3.0 * 5.0 * cosio) / (1.0 + cosio)
+	aycof = 0.25 * a3ovk2 * sinio
 	delmo = (1.0 + eta * math.cos(tle.anomaly))
 	sinmo = math.sin(tle.anomaly)
 	x7thm1 = 7.0 * theta2 - 1.0
@@ -370,13 +370,6 @@ def SGP4(tle, tsince):
 #BETAL=SQRT(TEMP)
 #TEMP3=1./(1.+BETAL)
 #COSU=TEMP2*(COSEPW-AXN+AYN*ESINE*TEMP3)
-	temp2 = a * temp1
-	betal = math.sqrt(temp)
-	temp3 = 1.0 / (1.0 + betal)
-	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
-	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
-#	u = 
-	
 #SINU=TEMP2*(SINEPW-AYN-AXN*ESINE*TEMP3)
 #U=ACTAN(SINU,COSU)
 #SIN2U=2.*SINU*COSU
@@ -384,24 +377,52 @@ def SGP4(tle, tsince):
 #TEMP=1./PL
 #TEMP1=CK2*TEMP
 #TEMP2=TEMP1*TEMP
-
-
+	temp2 = a * temp1
+	betal = math.sqrt(temp)
+	temp3 = 1.0 / (1.0 + betal)
+	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
+	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
+	u = actan(sinu, cosu)
+	sin2u = 2.0 * sinu * cosu
+	cos2u = 2.0 * cosu * cosu - 1.0
+	temp = 1.0/pl
+	temp1 = ck2 * temp
+	temp2 = temp1 * temp
+	
+#
 #* UPDATE FOR SHORT PERIODICS
+#
+
 #RK=R*(1.-1.5*TEMP2*BETAL*X3THM1)+.5*TEMP1*X1MTH2*COS2U
 #UK=U-.25*TEMP2*X7THM1*SIN2U
 #XNODEK=XNODE+1.5*TEMP2*COSIO*SIN2U
 #XINCK=XINCL+1.5*TEMP2*COSIO*SINIO*COS2U
 #RDOTK=RDOT-XN*TEMP1*X1MTH2*SIN2U
 #RFDOTK=RFDOT+XN*TEMP1*(X1MTH2*COS2U+1.5*X3THM1)
-
-
+	rk = r * (1.0 - 1.5 * temp2 * betal * x3thm1) + 0.5 *temp1 * x1mth2 * cos2u
+	uk = u - 0.25 * temp2 * x7thm1 * sin2u
+	xnodek = xnode + 1.5 * temp2 * cosio * sin2u
+	xinck = tle.inclination + 1.5 * temp2 * cosio * sinio * cos2u
+	rdotk = rdot - xn * temp1 * x1mth2 * sin2u
+	rfdotk = rfdot + xn * temp1 * (x1mth2 * cos2u + 1.5 * x3thm1)
+	
+#
 #* ORIENTATION VECTORS
+#
+
 #SINUK=SIN(UK)
 #COSUK=COS(UK)
 #SINIK=SIN(XINCK)
 #COSIK=COS(XINCK)
 #SINNOK=SIN(XNODEK)
 #COSNOK=COS(XNODEK)
+	sinuk = math.sin(uk)
+	cosuk = math.cos(uk)
+	sinik = math.sin(xinck)
+	cosik = math.cos(xinck)
+	sinnok = math.sin(xnodek)
+	cosnok = math.cos(xnodek)
+
 #XMX=-SINNOK*COSIK
 #XMY=COSNOK*COSIK
 #UX=XMX*SINUK+COSNOK*COSUK
@@ -410,26 +431,40 @@ def SGP4(tle, tsince):
 #VX=XMX*COSUK-COSNOK*SINUK
 #VY=XMY*COSUK-SINNOK*SINUK
 #VZ=SINIK*COSUK
+	xmx = -sinnok * cosik
+	xmy = cosnok * cosik
+	ux = xmx * sinuk + cosnok * cosuk
+	uy = xmy * sinuk + sinnok * cosuk
+	uz = sinik * sinuk
+	vx = xmx * cosuk - cosnok * sinuk
+	vy = xmy * cosuk - sinnok * sinuk
+	vz = sinik * cosuk
 
-
+#
 #* POSITION AND VELOCITY
+#
+
 #X=RK*UX
 #Y=RK*UY
 #Z=RK*UZ
 #XDOT=RDOTK*UX+RFDOTK*VX
 #YDOT=RDOTK*UY+RFDOTK*VY
 #ZDOT=RDOTK*UZ+RFDOTK*VZ
+	x = rk * ux
+	y = rk * uy
+	z = rk * uz
+	xdot = rdotk * ux + rfdotk * vx
+	ydot = rdotk * uy + rfdotk * vy
+	zdot = rdotk * uz + rfdotk * vz
+	
+	return (x, y, z)	
 #RETURN
 #END
-	x = 0
-	y = 0
-	z = 0
-	return (x, y, z)		
 
 def actan(s,c):
 	"""From the Space Track pdf: The function subroutine ACTAN is passed the values of sine and cosine in that order and 
 it returns the angle in radians within the range of 0 to 2pi."""
-	ouput = 0
+	output = 0
 	if c < 0:
 		temp = s/c
 		output = output + math.atan(temp)
