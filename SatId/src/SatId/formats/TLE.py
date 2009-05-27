@@ -73,7 +73,7 @@ def parseTLE(buffer):
 		x += 1
 		line = lines[x]
 		tle.objectId = line[2:7]
-		tle.inclination = float(line[8:16]) * radians_to_degree
+		tle.inclination = float(line[8:16]) * radians_per_degree
 		tle.ra = float(line[17:25]) * radians_per_degree
 		tle.eccentricity = float("0."+line[26:33]) 
 		tle.perigee = float(line[34:42]) * radians_per_degree
