@@ -14,10 +14,9 @@ import math
 # Sample input and results from reference implementation.
 #
 sampletle = "Sample TLE \n\
-1 88888U          80275.98708465  .00073094  13844-3  66816-4 0    8\n\
-2 88888  72.8435 115.9689 0086731  52.6988 110.5714 16.05824518   105"
+1 88888U          80275.98708465 0.00073094  13844-3 066816-4 0    8\n\
+2 88888  72.8435 115.9689 0086731 52.6988  110.5714 16.05824518   105"
 
-testtle = TLE.TLE()
 
 #
 #SGP4 results
@@ -39,14 +38,15 @@ testtle = TLE.TLE()
 class Test(unittest.TestCase):
 
 	def testNoneForInput(self):
-		s = SGP.SGP4(None,3)
+		s = SGP.SGP4(None, 0)
 		self.assertEqual((None, None, None), s)
 
 	def testSample(self):
-		tle = TLE.TLE() 
-#		tle = TLE.parseTLE(sampletle)
-		s = SGP.SGP4(testtle,3)
+#		tle = TLE.TLE() 
+		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(tle, 0)
 		self.assertNotEqual((None, None, None), s)
+		print "\n",s
 		self.assertEqual((0.17636278631532942, 0.01301847005709536, 0), s)
 
 
