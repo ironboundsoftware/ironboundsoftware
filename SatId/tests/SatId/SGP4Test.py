@@ -41,15 +41,25 @@ class Test(unittest.TestCase):
 		s = SGP.SGP4(None, 0)
 		self.assertEqual((None, None, None), s)
 
-	def testSample(self):
-#		tle = TLE.TLE() 
+	def testNothing(self):
+		tle = TLE.TLE() 
+		s = SGP.SGP4(tle, 0)
+		self.assertNotEqual((None, None, None), s)
+		self.assertEqual((0.17684226980540024, 0.0, 0.0), s)
+
+	def testSample0(self):
 		tle = TLE.parseTLE(sampletle)
 		s = SGP.SGP4(tle, 0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n",s
-		self.assertEqual((0.17636278631532942, 0.01301847005709536, 0), s)
+		self.assertEqual((2328.97048951, -5995.22076416, 1719.97067261), s)
 
-
+	def te3stSample360(self):
+		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(tle, 360)
+		self.assertNotEqual((None, None, None), s)
+		print "\n",s
+		self.assertEqual((2456.10705566, -6071.93853760, 1222.89727783), s)
 
 		
 class TestFunkyRadianNormalizer(unittest.TestCase):
