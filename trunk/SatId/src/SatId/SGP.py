@@ -382,7 +382,7 @@ def SGP4(tle, tsince):
 	temp3 = 1.0 / (1.0 + betal)
 	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
 	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
-	u = actan(sinu, cosu)
+	u = math.atan2(sinu, cosu)
 	sin2u = 2.0 * sinu * cosu
 	cos2u = 2.0 * cosu * cosu - 1.0
 	temp = 1.0/pl
