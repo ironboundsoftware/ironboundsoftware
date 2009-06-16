@@ -16,8 +16,8 @@ class TLE:
 	'''
 #	print dir(SatId)
 	#temp vars
-	xmnpda = SatId.minutes_per_day
-	temp = SatId.twopi/xmnpda/xmnpda
+#	xmnpda = SatId.minutes_per_day
+#	temp = SatId.twopi/xmnpda/xmnpda
 	#line 0
 	name = ""
 	#common to line 1 & 2
@@ -73,18 +73,18 @@ def parseTLE(buffer):
 		x += 1
 		line = lines[x]
 		tle.objectId = line[2:7]
-		tle.inclination = float(line[8:16]) * SatId.radians_per_degree
-		tle.ra = float(line[17:25]) * SatId.radians_per_degree
+		tle.inclination = float(line[8:16])# * SatId.radians_per_degree
+		tle.ra = float(line[17:25]) #* SatId.radians_per_degree
 		tle.eccentricity = float("0."+line[26:33]) 
-		tle.perigee = float(line[34:42]) * SatId.radians_per_degree
-		tle.anomaly = float(line[43:51]) * SatId.radians_per_degree
+		tle.perigee = float(line[34:42]) #* SatId.radians_per_degree
+		tle.anomaly = float(line[43:51]) #* SatId.radians_per_degree
 		tle.meanMotion = float(line[52:63])
 		tle.revolutions = int(line[63:68])	
 		
 		#Fixup
-		tle.meanMotion *= TLE.temp * TLE.xmnpda
-		tle.firstDeriv *= TLE.temp
-		tle.secondDeriv *= TLE.temp/TLE.xmnpda
+#		tle.meanMotion *= TLE.temp * TLE.xmnpda
+#		tle.firstDeriv *= TLE.temp
+#		tle.secondDeriv *= TLE.temp/TLE.xmnpda
 		 
 	return tle
 	
