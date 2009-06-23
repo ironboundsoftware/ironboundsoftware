@@ -33,7 +33,49 @@ def SGP4(tle, tsince):
 #1 XJ3,XKE,XKMPER,XMNPDA,AE
 
 #DOUBLE PRECISION EPOCH, DS50
+#
+# Prep the observation code (conversion to radians, etc.)
+#XNDD6O=XNDD6O*(10.**IEXP) 
+#XNODEO=XNODEO*DE2RA 
+#OMEGAO=OMEGAO*DE2RA 
+#XMO=XMO*DE2RA 
+	#Mean motion already handled
+	tle.ra *= SatId.radians_per_degree
+	tle.perigee *= SatId.radians_per_degree
+	tle.anomaly *= SatId.radians_per_degree
 
+#XINCL=XINCL*DE2RA 
+#TEMP=TWOPI/XMNPDA/XMNPDA 
+#XNO=XNO*TEMP*XMNPDA 
+#XNDT2O=XNDT2O*TEMP 
+#XNDD6O=XNDD6O*TEMP/XMNPDA 
+	tle.inclination *= SatId.radians_per_degree
+	inittemp = SatId.twopi/SatId.minutes_per_day/SatId.minutes_per_day
+	tle.meanMotion *= inittemp * SatId.minutes_per_day
+	tle.firstDeriv *= inittemp
+	tle.secondDeriv *= inittemp/SatId.minutes_per_day
+
+#* INPUT CHECK FOR PERIOD VS EPHEMERIS SELECTED 
+#* PERIOD GE 225 MINUTES IS DEEP SPACE 
+#A1=(XKE/XNO)**TOTHRD 
+#TEMP=1.5*CK2*(3.*COS(XINCL)**2-1.)/(1.-EO*EO)**1.5 
+#DEL1=TEMP/(A1*A1) 
+#AO=A1*(1.-DEL1*(.5*TOTHRD+DEL1*(1.+134./81.*DEL1))) 
+#DELO=TEMP/(AO*AO) 
+#XNODP=XNO/(1.+DELO) 
+	a1 = (SatId.xke/tle.meanMotion) ** SatId.twothird
+	inittemp = 1.5 * SatId.ck2 * (3.0 *math.cos(tle.inclination) ** 2 - 1.0)/ \
+		(1.0 - tle.eccentricity * tle.eccentricity)**1.5
+	initdel1 = inittemp/(a1*a1)
+	a0 = a1 *(1.0 - initdel1*(0.5 * SatId.twothird + initdel1 * (1.0 +134.0/81.0 * initdel1)))
+	initdel0 = inittemp/(a0*a0)
+	xnodp = tle.meanMotion/(1.0 + initdel0)
+	
+# Next lines determine if it is deep space or not.
+#IF((TWOPI/XNODP/XMNPDA) .GE. .15625) IDEEP=1 
+#BSTAR=BSTAR*(10.**IBEXP)/AE 
+#TSINCE=TS 
+#IFLAG=1 
 
 #IF (IFLAG .EQ. 0) GO TO 100
 
@@ -319,7 +361,7 @@ def SGP4(tle, tsince):
 
 #CAPU=FMOD2P(XLT-XNODE)
 #TEMP2=CAPU
-	capu = fmod2p(xlt - xnode)
+	capu = (xlt - xnode)%(SatId.twopi) #fmod2p(xlt - xnode)%(SatId.twopi)
 	temp2 = capu
 #DO 130 I=1,10
 	for loopcounter in range(1, 11):
@@ -456,6 +498,21 @@ def SGP4(tle, tsince):
 	xdot = rdotk * ux + rfdotk * vx
 	ydot = rdotk * uy + rfdotk * vy
 	zdot = rdotk * uz + rfdotk * vz
+	
+#
+# Original code did this outside of the SGP functions.
+#X=X*XKMPER/AE 
+#Y=Y*XKMPER/AE 
+#Z=Z*XKMPER/AE 
+#XDOT=XDOT*XKMPER/AE*XMNPDA/86400. 
+#YDOT=YDOT*XKMPER/AE*XMNPDA/86400. 
+#ZDOT=ZDOT*XKMPER/AE*XMNPDA/86400. 
+	x *= SatId.xkmper/SatId.ae
+	y *= SatId.xkmper/SatId.ae
+	z *= SatId.xkmper/SatId.ae
+	xdot *= SatId.xkmper/SatId.ae * SatId.minutes_per_day /86400.0
+	ydot *= SatId.xkmper/SatId.ae * SatId.minutes_per_day /86400.0
+	zdot *= SatId.xkmper/SatId.ae * SatId.minutes_per_day /86400.0
 	
 	return (x, y, z)	
 #RETURN
