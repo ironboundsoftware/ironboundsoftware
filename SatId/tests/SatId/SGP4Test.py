@@ -47,21 +47,64 @@ class Test(unittest.TestCase):
 		self.assertNotEqual((None, None, None), s)
 		self.assertEqual((42241.066073822927, 0.0, 0.0), s)
 
-	def testSample0(self):
+	def testSampleA0(self):
 		tle = TLE.parseTLE(sampletle)
-		s = SGP.SGP4(tle, 0)
+		s = SGP.SGP4(tle, 0.0)
 		self.assertNotEqual((None, None, None), s)
-		print "\n",s
-		self.assertEqual((2328.97048951, -5995.22076416, 1719.97067261), s)
+		print "\n\t",s
+		expected = (2328.97048951, -5995.22076416, 1719.97067261)
+		percentError(expected, s)
+		self.assertEqual(expected, s)
 
-	def testSample360(self):
+	def testSampleB360(self):
 		tle = TLE.parseTLE(sampletle)
-		s = SGP.SGP4(tle, 360)
+		s = SGP.SGP4(tle, 360.0)
 		self.assertNotEqual((None, None, None), s)
-		print "\n",s
-		self.assertEqual((2456.10705566, -6071.93853760, 1222.89727783), s)
+		print "\n\t",s
+		expected = (2456.10705566, -6071.93853760, 1222.89727783)
+		percentError(expected, s)
+		self.assertEqual(expected, s)
 
+	def testSampleC720(self):
+		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(tle, 720.0)
+		self.assertNotEqual((None, None, None), s)
+		print "\n\t",s
+		expected = (2567.56195068, -6112.50384522, 713.96397400)
+		percentError(expected, s)
+		self.assertEqual(expected, s)
 		
+	def testSampleD1080(self):
+		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(tle, 1080.0)
+		self.assertNotEqual((None, None, None), s)
+		print "\n\t",s
+		expected = (2663.09078980, -6115.48229980, 196.39640427)
+		percentError(expected, s)
+		self.assertEqual(expected, s)	
+		
+	def testSampleE1440(self):
+		tle = TLE.parseTLE(sampletle)
+		s = SGP.SGP4(tle, 1440.0)
+		self.assertNotEqual((None, None, None), s)
+		print "\n\t",s
+		expected = (2742.55133057, -6079.67144775, -326.38095856)
+		percentError(expected, s)
+		self.assertEqual(expected, s)	
+		
+def percentError(expected, actual):
+	""" Looks at what was expected vs what we got and displays a 
+	percent error."""
+	output =[0.0,0.0,0.0]
+	for x in range(0,3):
+		a = actual[x]
+		b = expected[x]
+		output[x] = ((b-a)/float(b)) * 100
+	print "\tPercent Error: ", output
+	return output
+	
+	
+	
 class TestFunkyRadianNormalizer(unittest.TestCase):
 	f = None
 	
