@@ -425,6 +425,7 @@ def SGP4(tle, tsince):
 	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
 	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
 	u = math.atan2(sinu, cosu)
+	print "U is: ",u
 	sin2u = 2.0 * sinu * cosu
 	cos2u = 2.0 * cosu * cosu - 1.0
 	temp = 1.0/pl

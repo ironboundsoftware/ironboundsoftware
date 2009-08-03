@@ -32,6 +32,3 @@ ae = 1.0 #AE distance units/Earth radii 1.0
 #PIO2 pi/2 1.57079633
 
 #X3PIO2 3pi/2 4.71238898
-
-def hello():
-	print "Hello"
