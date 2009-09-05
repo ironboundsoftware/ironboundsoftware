@@ -18,6 +18,9 @@ class Test(unittest.TestCase):
 	def testIdent(self):
 		self.i.identify(None)
 
+def suite():
+	return unittest.TestLoader().loadTestsFromTestCase(Test)
+
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testIdent']
 	unittest.main()

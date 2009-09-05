@@ -133,7 +133,10 @@ class TestFunkyRadianNormalizer(unittest.TestCase):
 						
 	
 	
-	
+def suite():
+	tests = unittest.TestLoader().loadTestsFromTestCase(Test)
+	tests.addTests(unittest.TestLoader().loadTestsFromTestCase(TestFunkyRadianNormalizer)) 
+	return tests
 	
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testSample']
