@@ -54,6 +54,12 @@ class Test(unittest.TestCase):
 		self.assertTrue(None == mpc)
 			  		  
 
+def suite():
+	return unittest.TestLoader().loadTestsFromTestCase(Test)
+#    tests = ['testParse', 'testParseBlank', 'testParseJunk']
+#
+#    return unittest.TestSuite(map(Test, tests))
+
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testParse']
 	unittest.main()

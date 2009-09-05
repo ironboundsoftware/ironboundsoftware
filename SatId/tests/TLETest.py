@@ -39,6 +39,9 @@ class Test(unittest.TestCase):
 		tle = TLE.parseTLE("")
 		self.assertEquals(None, tle)
 
+def suite():
+	return unittest.TestLoader().loadTestsFromTestCase(Test)
+
 if __name__ == "__main__":
 	#import sys;sys.argv = ['', 'Test.testParse']
 	unittest.main()
