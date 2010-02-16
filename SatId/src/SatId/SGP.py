@@ -3,7 +3,7 @@ Created on May 14, 2009
 
 @author: nick.loadholtes
 '''
-import formats.TLE as TLE
+#import formats.TLE as TLE
 import SatId
 #from SatId import *
 import math
@@ -152,7 +152,7 @@ def SGP4(tle, tsince):
 		if perige > 98.0:
 			print "goto 9"
 	#9 QOMS24=((120.-S4)*AE/XKMPER)**4
-			qosm24 = ((120.0 - s4) * SatId.xkmper) ** 4
+			qoms24 = ((120.0 - s4) * SatId.xkmper) ** 4
 		else:
 	#S4=20.
 			s4 = 20.0
