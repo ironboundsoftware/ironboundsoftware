@@ -7,7 +7,7 @@ obsdata comes from the MPC sample: http://www.cfa.harvard.edu/iau/info/ObsExampl
 
 '''
 import unittest
-from formats import MPC
+from SatId.formats import MPC
 
 obsdata = ("    CJ93K010  C1995 01 12.44658 23 20 12.59 -73 00 31.9                      413",
 "    PJ93X010  C1995 01 13.71552 12 08 44.80 +01 55 10.6                      413",
@@ -52,7 +52,7 @@ class Test(unittest.TestCase):
 		""" Junk """
 		mpc = MPC.parseMPC("Junk blah blah")
 		self.assertTrue(None == mpc)
-			  		  
+
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(Test)
