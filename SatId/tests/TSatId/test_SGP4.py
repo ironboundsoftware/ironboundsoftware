@@ -4,7 +4,6 @@ Created on May 14, 2009
 @author: njl
 '''
 import unittest
-import SatId
 from SatId import SGP
 from SatId.formats import TLE
 from math import pi
