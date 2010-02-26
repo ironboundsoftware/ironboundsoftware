@@ -15,6 +15,7 @@ class Test(unittest.TestCase):
 
 
 	def testParse(self):
+		'''Designed to test basic TLE parsing.'''
 		tle = TLE.parseTLE(buffer)
 		self.assertNotEquals(None, tle)
 		self.assertEqual("ISS (ZARYA)", tle.name)
