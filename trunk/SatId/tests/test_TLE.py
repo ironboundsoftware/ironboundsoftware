@@ -12,11 +12,12 @@ buffer = "ISS (ZARYA)\n\
 2 25544  51.6335 341.7760 0007976 126.2523 325.9359 15.70406856328903"
 
 class Test(unittest.TestCase):
-
+	tlefile = "SGP4-VER.TLE"
 
 	def testParse(self):
-		'''Designed to test basic TLE parsing.'''
-		tle = TLE.parseTLE(buffer)
+		tles = TLE.parseTLE(buffer)
+		self.assertEqual(1, len(tles))
+		tle = tles[0]
 		self.assertNotEquals(None, tle)
 		self.assertEqual("ISS (ZARYA)", tle.name)
 		self.assertEqual("25544", tle.objectId)
@@ -38,6 +39,25 @@ class Test(unittest.TestCase):
 	def testParseBad(self):
 		tle = TLE.parseTLE("")
 		self.assertEquals(None, tle)
+		
+	def testTLEFileBad(self):
+		"""There's a big file of test TLEs, lets make sure we can read it."""
+		tle = TLE.parseTLE(self.tlefile)
+		self.assertNotEquals(None,tle)
+		# Should this test pass? It isn't reading in the file... It 
+		# is trying to parse the tlefile string.
+		print "TLE is" + str(tle)
+		
+	def testTLEFile(self):
+		"""A read of the TLE test file"""
+		f = open(self.tlefile)
+		buff = f.read()
+		# print buff
+		tles = TLE.parseTLE(buff)
+		self.assertNotEquals(None, tles)
+		self.assertEquals(33, len(tles))
+		self.assertEquals("83058", tles[8].objectId)
+		
 
 def suite():
 	return unittest.TestLoader().loadTestsFromTestCase(Test)
