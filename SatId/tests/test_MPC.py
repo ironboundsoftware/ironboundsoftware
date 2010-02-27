@@ -27,7 +27,6 @@ obsdata = ("    CJ93K010  C1995 01 12.44658 23 20 12.59 -73 00 31.9             
 
 class Test(unittest.TestCase):
 
-
 	def testParse(self):
 		""" Test to make sure we can parse the standard ref obs """
 		mpc = MPC.parseMPC(obsdata[0])
