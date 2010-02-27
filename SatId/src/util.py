@@ -15,7 +15,6 @@ void DLL_FUNC get_satellite_ra_dec_delta( const double *observer_loc,
 {
    double vect[3], dist2 = 0.;
    int i;
-
    for( i = 0; i < 3; i++)
       {
       vect[i] = satellite_loc[i] - observer_loc[i];
@@ -27,7 +26,6 @@ void DLL_FUNC get_satellite_ra_dec_delta( const double *observer_loc,
       *ra += PI + PI;
    *dec = asin( vect[2] / *delta);
 }
-
 void DLL_FUNC epoch_of_date_to_j2000( const double jd, double *ra, double *dec)
 {
    const double t_centuries = (jd - 2451545.) / 36525.;
