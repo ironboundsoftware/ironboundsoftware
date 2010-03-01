@@ -44,6 +44,9 @@ class TLE:
 		'''
 		Constructor
 		'''
+	def __str__(self):
+		"""A handy string representation of a TLE"""
+		return str(self.__dict__)
 	
 def parseTLE(buffer):
 	"""Read in as many TLE items as we can... """
@@ -53,26 +56,20 @@ def parseTLE(buffer):
 	x = 0
 	output = []
 	tle = None
-	while x < len(lines):
-		# print "\tLooking at " + lines[x]
-		line = lines[x]
+	for line in lines:
 		firstchar = line[0]
 		if "#" == firstchar:
 			pass
-			# print "Comment:" + line
 		if "1" == firstchar:
-			# print "New TLE"
-			tle = parseLine1(tle, line)
+			tle = parseLine1(line)
 		if "2" == firstchar:
 			if tle:
-				# print "Add to the TLE"
 				output.append(parseLine2(tle, line))
-				print tle
+				# print tle #Sanity check to make sure a new TLE was created
 				tle = None
-		x += 1		
 	return output
 	
-def parseLine1(tle, line):
+def parseLine1(line):
 	"""Parse out the first line of the TLE"""
 	tle = TLE()
 	tle.classification = line[7]
@@ -96,6 +93,7 @@ def parseLine2(tle, line):
 	tle.anomaly = float(line[43:51]) #* SatId.radians_per_degree
 	tle.meanMotion = float(line[52:63])
 	tle.revolutions = int(line[63:68])
+	return tle
 
 	#Fixup
 #		tle.meanMotion *= TLE.temp * TLE.xmnpda
