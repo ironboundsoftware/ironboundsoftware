@@ -12,7 +12,7 @@ buffer = "ISS (ZARYA)\n\
 2 25544  51.6335 341.7760 0007976 126.2523 325.9359 15.70406856328903"
 
 class Test(unittest.TestCase):
-	tlefile = "SGP4-VER.TLE"
+	tlefile = "tests/SGP4-VER.TLE"
 
 	def testParse(self):
 		tles = TLE.parseTLE(buffer)

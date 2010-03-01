@@ -47,7 +47,7 @@ class Test(unittest.TestCase):
 		self.assertEqual((42241.066073822927, 0.0, 0.0), s)
 
 	def testSampleA0(self):
-		tle = TLE.parseTLE(sampletle)
+		tle = TLE.parseTLE(sampletle)[0]
 		s = SGP.SGP4(tle, 0.0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n\t",s
@@ -56,7 +56,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(expected, s)
 
 	def testSampleB360(self):
-		tle = TLE.parseTLE(sampletle)
+		tle = TLE.parseTLE(sampletle)[0]
 		s = SGP.SGP4(tle, 360.0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n\t",s
@@ -65,7 +65,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(expected, s)
 
 	def testSampleC720(self):
-		tle = TLE.parseTLE(sampletle)
+		tle = TLE.parseTLE(sampletle)[0]
 		s = SGP.SGP4(tle, 720.0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n\t",s
@@ -74,7 +74,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(expected, s)
 		
 	def testSampleD1080(self):
-		tle = TLE.parseTLE(sampletle)
+		tle = TLE.parseTLE(sampletle)[0]
 		s = SGP.SGP4(tle, 1080.0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n\t",s
@@ -83,7 +83,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(expected, s)	
 		
 	def testSampleE1440(self):
-		tle = TLE.parseTLE(sampletle)
+		tle = TLE.parseTLE(sampletle)[0]
 		s = SGP.SGP4(tle, 1440.0)
 		self.assertNotEqual((None, None, None), s)
 		print "\n\t",s
