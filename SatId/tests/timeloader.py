@@ -23,8 +23,16 @@ def main(infile, outfile):
         if 2 == len(tokens):
             satid = tokens[0]
             continue
-        
-        print satid + "-" + str(tokens)
+        if None == tokens:
+            continue
+        tokens = tokens[:7]
+        tokens.reverse()
+        tokens.append("xx")
+        tokens.append(satid)
+        tokens.reverse()
+        # print tokens
+        cur.execute("insert into sattimes values(?,?,?,?,?,?,?,?,?)", tokens)
+        # print satid + "-" + str(tokens)
     conn.commit()
     conn.close()
     fin.close()
