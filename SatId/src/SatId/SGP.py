@@ -140,7 +140,7 @@ def SGP4(tle, tsince):
 
 #IF(PERIGE .GE. 156.) GO TO 10
 	if perige < 156.0:
-		print "goto 10"
+		# print "goto 10"
 	
 	#S4=PERIGE-78.
 		s4 = perige-78.0
@@ -150,7 +150,7 @@ def SGP4(tle, tsince):
 	#	
 	#IF(PERIGE .GT. 98.) GO TO 9
 		if perige > 98.0:
-			print "goto 9"
+			# print "goto 9"
 	#9 QOMS24=((120.-S4)*AE/XKMPER)**4
 			qoms24 = ((120.0 - s4) * SatId.xkmper) ** 4
 		else:
@@ -425,7 +425,7 @@ def SGP4(tle, tsince):
 	cosu = temp2 * (cosepw - axn + ayn * esine * temp3)
 	sinu = temp2 * (sinepw - ayn - axn * esine * temp3)
 	u = math.atan2(sinu, cosu)
-	print "U is: ",u
+	# print "U is: ",u
 	sin2u = 2.0 * sinu * cosu
 	cos2u = 2.0 * cosu * cosu - 1.0
 	temp = 1.0/pl
