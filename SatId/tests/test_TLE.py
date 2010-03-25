@@ -11,7 +11,7 @@ buffer = "ISS (ZARYA)\n\
 1 25544U 98067A   04236.56031392  .00020137  00000-0  16538-3 0  5135\n\
 2 25544  51.6335 341.7760 0007976 126.2523 325.9359 15.70406856328903"
 
-class Test(unittest.TestCase):
+class TestTLE(unittest.TestCase):
 	tlefile = "tests/SGP4-VER.TLE"
 
 	def testParse(self):
