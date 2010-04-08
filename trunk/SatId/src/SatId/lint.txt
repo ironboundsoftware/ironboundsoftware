@@ -1,0 +1,214 @@
+************* Module SGP
+C: 70: Line too long (91/80)
+C:203: Line too long (83/80)
+C:221: Line too long (115/80)
+C:523: Line too long (118/80)
+C: 11:SGP4: Invalid name "SGP4" (should match [a-z_][a-z0-9_]{2,30}$)
+R: 11:SGP4: Too many local variables (138/15)
+E: 19:SGP4: Undefined variable 'SatId'
+E: 20:SGP4: Undefined variable 'SatId'
+E: 43:SGP4: Undefined variable 'SatId'
+E: 44:SGP4: Undefined variable 'SatId'
+E: 45:SGP4: Undefined variable 'SatId'
+E: 52:SGP4: Undefined variable 'SatId'
+E: 53:SGP4: Undefined variable 'SatId'
+E: 53:SGP4: Undefined variable 'SatId'
+E: 53:SGP4: Undefined variable 'SatId'
+E: 54:SGP4: Undefined variable 'SatId'
+E: 56:SGP4: Undefined variable 'SatId'
+C: 66:SGP4: Invalid name "a1" (should match [a-z_][a-z0-9_]{2,30}$)
+E: 66:SGP4: Undefined variable 'SatId'
+E: 66:SGP4: Undefined variable 'SatId'
+E: 67:SGP4: Undefined variable 'SatId'
+C: 70:SGP4: Invalid name "a0" (should match [a-z_][a-z0-9_]{2,30}$)
+E: 70:SGP4: Undefined variable 'SatId'
+C: 88:SGP4: Invalid name "a1" (should match [a-z_][a-z0-9_]{2,30}$)
+E: 88:SGP4: Undefined variable 'SatId'
+C:110:SGP4: Invalid name "ao" (should match [a-z_][a-z0-9_]{2,30}$)
+E:126:SGP4: Undefined variable 'SatId'
+E:126:SGP4: Undefined variable 'SatId'
+E:126:SGP4: Undefined variable 'SatId'
+C:137:SGP4: Invalid name "s4" (should match [a-z_][a-z0-9_]{2,30}$)
+E:137:SGP4: Undefined variable 'SatId'
+E:138:SGP4: Undefined variable 'SatId'
+E:139:SGP4: Undefined variable 'SatId'
+E:139:SGP4: Undefined variable 'SatId'
+C:146:SGP4: Invalid name "s4" (should match [a-z_][a-z0-9_]{2,30}$)
+E:155:SGP4: Undefined variable 'SatId'
+C:158:SGP4: Invalid name "s4" (should match [a-z_][a-z0-9_]{2,30}$)
+C:161:SGP4: Invalid name "s4" (should match [a-z_][a-z0-9_]{2,30}$)
+E:161:SGP4: Undefined variable 'SatId'
+E:161:SGP4: Undefined variable 'SatId'
+C:183:SGP4: Invalid name "c2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:185:SGP4: Invalid name "c1" (should match [a-z_][a-z0-9_]{2,30}$)
+E:192:SGP4: Undefined variable 'SatId'
+E:192:SGP4: Undefined variable 'SatId'
+C:193:SGP4: Invalid name "c3" (should match [a-z_][a-z0-9_]{2,30}$)
+E:193:SGP4: Undefined variable 'SatId'
+C:202:SGP4: Invalid name "c4" (should match [a-z_][a-z0-9_]{2,30}$)
+C:213:SGP4: Invalid name "c5" (should match [a-z_][a-z0-9_]{2,30}$)
+E:217:SGP4: Undefined variable 'SatId'
+E:247:SGP4: Undefined variable 'SatId'
+C:264:SGP4: Invalid name "d2" (should match [a-z_][a-z0-9_]{2,30}$)
+C:266:SGP4: Invalid name "d3" (should match [a-z_][a-z0-9_]{2,30}$)
+C:267:SGP4: Invalid name "d4" (should match [a-z_][a-z0-9_]{2,30}$)
+C:336:SGP4: Invalid name "a" (should match [a-z_][a-z0-9_]{2,30}$)
+C:337:SGP4: Invalid name "e" (should match [a-z_][a-z0-9_]{2,30}$)
+C:338:SGP4: Invalid name "xl" (should match [a-z_][a-z0-9_]{2,30}$)
+C:340:SGP4: Invalid name "xn" (should match [a-z_][a-z0-9_]{2,30}$)
+E:340:SGP4: Undefined variable 'SatId'
+E:364:SGP4: Undefined variable 'SatId'
+E:384:SGP4: Undefined variable 'SatId'
+C:405:SGP4: Invalid name "pl" (should match [a-z_][a-z0-9_]{2,30}$)
+C:406:SGP4: Invalid name "r" (should match [a-z_][a-z0-9_]{2,30}$)
+E:408:SGP4: Undefined variable 'SatId'
+E:409:SGP4: Undefined variable 'SatId'
+C:427:SGP4: Invalid name "u" (should match [a-z_][a-z0-9_]{2,30}$)
+C:445:SGP4: Invalid name "rk" (should match [a-z_][a-z0-9_]{2,30}$)
+C:446:SGP4: Invalid name "uk" (should match [a-z_][a-z0-9_]{2,30}$)
+C:479:SGP4: Invalid name "ux" (should match [a-z_][a-z0-9_]{2,30}$)
+C:480:SGP4: Invalid name "uy" (should match [a-z_][a-z0-9_]{2,30}$)
+C:481:SGP4: Invalid name "uz" (should match [a-z_][a-z0-9_]{2,30}$)
+C:482:SGP4: Invalid name "vx" (should match [a-z_][a-z0-9_]{2,30}$)
+C:483:SGP4: Invalid name "vy" (should match [a-z_][a-z0-9_]{2,30}$)
+C:484:SGP4: Invalid name "vz" (should match [a-z_][a-z0-9_]{2,30}$)
+C:496:SGP4: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:497:SGP4: Invalid name "y" (should match [a-z_][a-z0-9_]{2,30}$)
+C:498:SGP4: Invalid name "z" (should match [a-z_][a-z0-9_]{2,30}$)
+C:511:SGP4: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+E:511:SGP4: Undefined variable 'SatId'
+E:511:SGP4: Undefined variable 'SatId'
+C:512:SGP4: Invalid name "y" (should match [a-z_][a-z0-9_]{2,30}$)
+E:512:SGP4: Undefined variable 'SatId'
+E:512:SGP4: Undefined variable 'SatId'
+C:513:SGP4: Invalid name "z" (should match [a-z_][a-z0-9_]{2,30}$)
+E:513:SGP4: Undefined variable 'SatId'
+E:513:SGP4: Undefined variable 'SatId'
+E:514:SGP4: Undefined variable 'SatId'
+E:514:SGP4: Undefined variable 'SatId'
+E:514:SGP4: Undefined variable 'SatId'
+E:515:SGP4: Undefined variable 'SatId'
+E:515:SGP4: Undefined variable 'SatId'
+E:515:SGP4: Undefined variable 'SatId'
+E:516:SGP4: Undefined variable 'SatId'
+E:516:SGP4: Undefined variable 'SatId'
+E:516:SGP4: Undefined variable 'SatId'
+R: 11:SGP4: Too many statements (183/50)
+W:500:SGP4: Unused variable 'ydot'
+W:367:SGP4: Unused variable 'loopcounter'
+W:279:SGP4: Unused variable 'iflag'
+W:499:SGP4: Unused variable 'xdot'
+W:501:SGP4: Unused variable 'zdot'
+C:522:actan: Invalid name "s" (should match [a-z_][a-z0-9_]{2,30}$)
+C:522:actan: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:522:actan: Comma not followed by a space
+def actan(s,c):
+           ^^
+C:522:actan: Invalid name "s" (should match [a-z_][a-z0-9_]{2,30}$)
+C:522:actan: Invalid name "c" (should match [a-z_][a-z0-9_]{2,30}$)
+C:554:fmod2p: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+C:554:fmod2p: Invalid name "x" (should match [a-z_][a-z0-9_]{2,30}$)
+E:557:fmod2p: Undefined variable 'SatId'
+C:559:fmod2p: Operator not preceded by a space
+	output = x%(SatId.twopi)
+           ^
+E:559:fmod2p: Undefined variable 'SatId'
+
+
+Report
+======
+198 statements analysed.
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |209    |39.81 |209      |=          |
++----------+-------+------+---------+-----------+
+|docstring |13     |2.48  |13       |=          |
++----------+-------+------+---------+-----------+
+|comment   |267    |50.86 |267      |=          |
++----------+-------+------+---------+-----------+
+|empty     |36     |6.86  |36       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |0      |0          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |0          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |3      |3          |=          |100.00      |33.33    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |50     |50       |=          |
++-----------+-------+---------+-----------+
+|refactor   |2      |2        |=          |
++-----------+-------+---------+-----------+
+|warning    |5      |203      |-198.00    |
++-----------+-------+---------+-----------+
+|error      |53     |53       |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-----------+------------+
+|message id |occurrences |
++===========+============+
+|E0602      |53          |
++-----------+------------+
+|C0103      |44          |
++-----------+------------+
+|W0612      |5           |
++-----------+------------+
+|C0301      |4           |
++-----------+------------+
+|R0915      |1           |
++-----------+------------+
+|R0914      |1           |
++-----------+------------+
+|C0324      |1           |
++-----------+------------+
+|C0322      |1           |
++-----------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at -6.26/10 (previous run: -16.26/10)
+
